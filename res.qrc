@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>down-arrow-download-svgrepo-com.svg</file>
+        <file>up-arrow-upload-svgrepo-com (1).svg</file>
+    </qresource>
+</RCC>
