@@ -6,16 +6,32 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &MainWindow::onTimer);
-    timer->setInterval(10000);
-    timer->start();
+
     this->sensors = new ds18b20();
-    if(sensors->getSensorCount()<2)
+    if(sensors->getSensorCount()==2)
+    {
+        timer = new QTimer(this);
+        connect(timer, &QTimer::timeout, this, &MainWindow::onTimer);
+        timer->setInterval(10000);
+        timer->start();
+        //ui->frame_2->hide();
+        this->onTimer();
+    }
+    else if(sensors->getSensorCount()==1)
+    {
+        timer = new QTimer(this);
+        connect(timer, &QTimer::timeout, this, &MainWindow::onTimer);
+        timer->setInterval(10000);
+        timer->start();
+        ui->frame_2->hide();
+        this->onTimer();
+    }
+    else
     {
         ui->frame_2->hide();
+        ui->label->setText("nope!");
     }
-    this->onTimer();
+
 }
 
 MainWindow::~MainWindow()
@@ -136,4 +152,19 @@ TemperatureData MainWindow::findMin2()
     mT.temp2=minTemp;
     mT.time=Min;
     return mT;
+}
+
+void MainWindow::createSaveFile(void)
+{
+
+}
+
+void MainWindow::saveData()
+{
+
+}
+
+void MainWindow::loadData()
+{
+
 }

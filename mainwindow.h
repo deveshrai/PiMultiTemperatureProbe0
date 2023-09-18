@@ -5,6 +5,7 @@
 #include <QTimer>
 #include <QDateTime>
 #include "ds18b20.h"
+#include <QFile>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -40,6 +41,9 @@ private:
     TemperatureData findMax2();
     TemperatureData findMin1();
     TemperatureData findMin2();
+    void saveData(void);
+    void loadData(void);
+    void createSaveFile(void);
 };
 
 
